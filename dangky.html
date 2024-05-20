@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+body {
+background-image: url("./images/h10.jpg");
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f1f1f1;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 70px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form {
+      max-width: 300px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+</style>
+<body>
+    <div class="container">
+        <form id="register-form">
+            <h2>Đăng ký</h2>
+            <div class="input-group">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" id="submitButton">Đăng ký</button>
+        </form>
+        <div id="success-message" style="display: none; color: green; text-align: center; margin-top: 10px;">
+            Đăng ký thành công!
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("register-form");
+            const username = document.getElementById("username");
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+            const submit = document.getElementById("submitButton");
+            const successMessage = document.getElementById("success-message");
+           
+            submit.addEventListener("click", (e) => {
+                e.preventDefault();
+                const data = {
+                    username: username.value,
+                    email: email.value,
+                    password: password.value,
+                };
+                postGoogle(data);
+            });
+
+            async function postGoogle(data) {
+                const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSe5wdNZrQzZeuaqMZ_GHnqLeSxQ3fy0-DXq5cMRHAvvrIFj1A/formResponse";
+                const formData = new FormData();
+                formData.append("entry.29714241", data.username); // replace with actual entry ID for username
+                formData.append("entry.1634678207", data.email); // replace with actual entry ID for email
+                formData.append("entry.1399711001", data.password); // replace with actual entry ID for password
+
+                await fetch(formURL, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                form.reset();
+                successMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("register-form");
+            const username = document.getElementById("username");
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+            const submit = document.getElementById("submitButton");
+            const successMessage = document.getElementById("success-message");
+           
+            submit.addEventListener("click", (e) => {
+                e.preventDefault();
+                const data = {
+                    username: username.value,
+                    email: email.value,
+                    password: password.value,
+                };
+                postGoogle(data);
+            });
+
+            async function postGoogle(data) {
+                const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSe5wdNZrQzZeuaqMZ_GHnqLeSxQ3fy0-DXq5cMRHAvvrIFj1A/formResponse";
+                const formData = new FormData();
+                formData.append("entry.29714241", data.username); // replace with actual entry ID for username
+                formData.append("entry.1634678207", data.email); // replace with actual entry ID for email
+                formData.append("entry.1399711001", data.password); // replace with actual entry ID for password
+
+                await fetch(formURL, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                form.reset();
+                successMessage.style.display = "block";
+            }
+        });
+    </script>
+  
+</body>
+</html>
